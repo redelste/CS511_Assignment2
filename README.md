@@ -1,2 +1,5 @@
 # CS511_Assignment2
-Ryan Edelstein, Zach Saegesser
+
+Ryan Edelstein
+
+ Zach Saegesser
