@@ -1,10 +1,9 @@
 package Assignment2;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import Assignment2.ApparatusType.Apparatus_Type;
-import Assignment2.WeightPlateSize.WeightPlate_Size;
 
 public class Exercise {
 	private ApparatusType at;
@@ -19,15 +18,17 @@ public class Exercise {
 	};
 	//generates a random exercise using the maximum number of plates given in the argument.
 	public static Exercise generateRandom(Map<WeightPlateSize, Integer> weight){
-		
-		
-		
-		return null;
-		
-		//return WeightPlate_Size.values()[new Random().nextInt() % Apparatus_Type.values().length];
-		
-		
-		
+		ApparatusType at= ApparatusType.RandomApparatusType();
+		Map<WeightPlateSize, Integer> weightSet = new HashMap<>();
+		for(WeightPlateSize wps : weight.keySet()){
+			weightSet.put(wps, 0);
+		}
+		for(int i =0; i < 1+ new Random().nextInt(10); i++){
+			WeightPlateSize a = WeightPlateSize.RandomWeightPlateSize();
+			weightSet.replace(a, weightSet.get(a)+1);
+		}
+		int duration = 3000 + new Random().nextInt(5000);
+		return new Exercise(at, weightSet, duration);
 	};
 	
 }

@@ -1,7 +1,7 @@
 package Assignment2;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Map;
 
 public class Client {
@@ -9,13 +9,16 @@ public class Client {
 	private List<Exercise> routine;
 
 	public Client(int id) {
+		this.id = id;
+		this.routine = new ArrayList<>();
 	}
 
 	public void addExercise(Exercise e) {
 	}
-
-	public static Client generateRandom(int id,
-			Map<WeightPlateSize, Integer> noOfWeightPlates) {
+	// map<K,V> K -> the type of keys, V = mapped values
+	
+	public static Client generateRandom(int id, Map<WeightPlateSize, Integer> noOfWeightPlates) {
+		
 		return null;
 	}
 
