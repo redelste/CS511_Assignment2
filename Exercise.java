@@ -35,8 +35,8 @@ public class Exercise {
 		return "Apparatus: " + this.at.toString() +"\nWeightSet: " + this.weight.toString() + "\nDuration: " + this.duration;
 	}
 	
-	public static void main(String[] args){
-		Exercise e = generateRandom(WeightPlateSize.noOfWeightPlates);
-		System.out.println(e);
-	}
+//	public static void main(String[] args){
+//		Exercise e = generateRandom(WeightPlateSize.noOfWeightPlates);
+//		System.out.println(e);
+//	}
 }
