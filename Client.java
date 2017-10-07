@@ -17,8 +17,9 @@ public class Client {
 	public void addExercise(Exercise e) {
 		this.routine.add(e);
 	}
+
 	// map<K,V> K -> the type of keys, V = mapped values
-	
+
 	/**
 	 * Builds a client with given id and noOfWeightPlates map
 	 * 
@@ -26,23 +27,108 @@ public class Client {
 	 * @param noOfWeightPlates
 	 * @return
 	 */
-	public static Client generateRandom(int id, Map<WeightPlateSize, Integer> noOfWeightPlates) {
+	public static Client generateRandom(int id,
+			Map<WeightPlateSize, Integer> noOfWeightPlates) {
 		Client bigbaby = new Client(id);
 		int numE = 15 + new Random().nextInt(6);
-		for(int i = 0; i < numE; i++){
+		for (int i = 0; i < numE; i++) {
 			bigbaby.addExercise(Exercise.generateRandom(noOfWeightPlates));
 		}
-		
+
 		return bigbaby;
 	}
-	
-	public String toString(){
-		return "ID: " + this.id + "\nRoutine: " + this.routine + "\nRoutineLength: " + this.routine.size();
+
+	public String toString() {
+		String out = "";
+		out += "Client ID: " + this.id + "\n";
+		for (Exercise e : routine)
+			out += e.toString() + '\n';
+		out += "Length: " + this.routine.size();
+		return out;
+
 	}
-	
-//	public static void main(String[] args){
-//		Client e = Client.generateRandom(20, WeightPlateSize.noOfWeightPlates);
-//		System.out.println(e.toString());
-//	}
+
+	public void runRoutine() throws InterruptedException {
+		for (Exercise e : routine) {
+			Gym.mutex.acquire();
+			switch (e.getAt()) {
+			case LEGPRESSMACHINE:
+				Gym.a_lpm.acquire();
+			case BARBELL:
+				Gym.a_bb.acquire();
+			case HACKSQUATMACHINE:
+				Gym.a_hsm.acquire();
+			case LEGEXTENSIONMACHINE:
+				Gym.a_lem.acquire();
+			case LEGCURLMACHINE:
+				Gym.a_lcm.acquire();
+			case LATPULLDOWNMACHINE:
+				Gym.a_lpm.acquire();
+			case PECDECKMACHINE:
+				Gym.a_pdm.acquire();
+			case CABLECROSSOVERMACHINE:
+				Gym.a_ccm.acquire();
+			}
+			for (WeightPlateSize w : e.getWeightSet().keySet()) {
+				switch (w) {
+				case SMALL_3KG:
+					for (int i = 0; i < e.getWeightSet().get(w); i++) {
+						Gym.a_sm.acquire();
+					}
+				case MEDIUM_5KG:
+					for (int i = 0; i < e.getWeightSet().get(w); i++) {
+						Gym.a_m.acquire();
+					}
+				case LARGE_10KG:
+					for (int i = 0; i < e.getWeightSet().get(w); i++) {
+						Gym.a_lg.acquire();
+					}
+				}
+			}
+			Gym.mutex.release();
+			Thread.sleep(e.getDuration());
+			Gym.mutex.acquire();
+			switch (e.getAt()) {
+			case LEGPRESSMACHINE:
+				Gym.a_lpm.release();
+			case BARBELL:
+				Gym.a_bb.release();
+			case HACKSQUATMACHINE:
+				Gym.a_hsm.release();
+			case LEGEXTENSIONMACHINE:
+				Gym.a_lem.release();
+			case LEGCURLMACHINE:
+				Gym.a_lcm.release();
+			case LATPULLDOWNMACHINE:
+				Gym.a_lpm.release();
+			case PECDECKMACHINE:
+				Gym.a_pdm.release();
+			case CABLECROSSOVERMACHINE:
+				Gym.a_ccm.release();
+			}
+			for (WeightPlateSize w : e.getWeightSet().keySet()) {
+				switch (w) {
+				case SMALL_3KG:
+					for (int i = 0; i < e.getWeightSet().get(w); i++) {
+						Gym.a_sm.release();
+					}
+				case MEDIUM_5KG:
+					for (int i = 0; i < e.getWeightSet().get(w); i++) {
+						Gym.a_m.release();
+					}
+				case LARGE_10KG:
+					for (int i = 0; i < e.getWeightSet().get(w); i++) {
+						Gym.a_lg.release();
+					}
+				}
+			}
+			Gym.mutex.release();
+		}
+	}
+
+	public static void main(String[] args) {
+		Client e = Client.generateRandom(20, WeightPlateSize.noOfWeightPlates);
+		System.out.println(e.toString());
+	}
 
 }

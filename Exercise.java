@@ -32,8 +32,19 @@ public class Exercise {
 	};
 	
 	public String toString(){
-		return "Apparatus: " + this.at.toString() +"\nWeightSet: " + this.weight.toString() + "\nDuration: " + this.duration;
+		return "Apparatus: " + this.getAt().toString() +", WeightSet: " + this.getWeightSet().toString() + ", Duration: " + this.getDuration();
 	}
+	public ApparatusType getAt() {
+		return at;
+	}
+	public Map<WeightPlateSize, Integer> getWeightSet() {
+		return weight;
+	}
+	public int getDuration() {
+		return duration;
+	}
+
+
 	
 //	public static void main(String[] args){
 //		Exercise e = generateRandom(WeightPlateSize.noOfWeightPlates);
