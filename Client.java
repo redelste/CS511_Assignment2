@@ -14,6 +14,7 @@ public class Client {
 	}
 
 	public void addExercise(Exercise e) {
+		
 	}
 	// map<K,V> K -> the type of keys, V = mapped values
 	

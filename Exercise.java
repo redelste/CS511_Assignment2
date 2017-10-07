@@ -11,7 +11,7 @@ public class Exercise {
 	private int duration;
 	
 	public Exercise(ApparatusType at, Map<WeightPlateSize, Integer> weight, int duration){
-		this.at = at;	
+		this.at = at;
 		this.weight = weight;
 		this.duration = duration;
 		
@@ -23,7 +23,7 @@ public class Exercise {
 		for(WeightPlateSize wps : weight.keySet()){
 			weightSet.put(wps, 0);
 		}
-		for(int i =0; i < 1+ new Random().nextInt(10); i++){
+		for(int i =0; i < 1 + new Random().nextInt(10); i++){
 			WeightPlateSize a = WeightPlateSize.RandomWeightPlateSize();
 			weightSet.replace(a, weightSet.get(a)+1);
 		}
@@ -31,4 +31,12 @@ public class Exercise {
 		return new Exercise(at, weightSet, duration);
 	};
 	
+	public String toString(){
+		return "Apparatus: " + this.at.toString() +"\nWeightSet: " + this.weight.toString() + "\nDuration: " + this.duration;
+	}
+	
+	public static void main(String[] args){
+		Exercise e = generateRandom(WeightPlateSize.noOfWeightPlates);
+		System.out.println(e);
+	}
 }

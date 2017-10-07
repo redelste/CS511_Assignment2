@@ -8,8 +8,7 @@ public enum WeightPlateSize {
 	SMALL_3KG, MEDIUM_5KG, LARGE_10KG;
 
 	public static WeightPlateSize RandomWeightPlateSize() {
-		return WeightPlateSize.values()[new Random().nextInt()
-				% WeightPlateSize.values().length];
+		return WeightPlateSize.values()[new Random().nextInt(WeightPlateSize.values().length)];
 	}
 	static Map<WeightPlateSize, Integer> noOfWeightPlates = new HashMap<>();
 	static {
