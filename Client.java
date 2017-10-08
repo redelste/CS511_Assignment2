@@ -51,6 +51,7 @@ public class Client {
 	public void runRoutine() throws InterruptedException {
 		for (Exercise e : routine) {
 			Gym.mutex.acquire();
+			System.out.println("Client "+this.id+" is boutta do: "+e.toString());
 			switch (e.getAt()) {
 			case LEGPRESSMACHINE:
 				Gym.a_lpm.acquire();
@@ -87,7 +88,7 @@ public class Client {
 			}
 			Gym.mutex.release();
 			Thread.sleep(e.getDuration());
-			Gym.mutex.acquire();
+//			Gym.mutex.acquire();
 			switch (e.getAt()) {
 			case LEGPRESSMACHINE:
 				Gym.a_lpm.release();
@@ -122,7 +123,8 @@ public class Client {
 					}
 				}
 			}
-			Gym.mutex.release();
+//			Gym.mutex.release();
+			Gym.resourceStat();
 		}
 	}
 
