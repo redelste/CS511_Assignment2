@@ -1,12 +1,10 @@
 package Assignment2;
 
-import java.util.Random;
-import java.util.concurrent.Semaphore;
 
 /** start the simulation */
 public class Assignment2 {
 	public static void main(String[] args) {
-		Thread thread = new Thread();
+		Thread thread = new Thread(new Gym());
 		thread.start();
 
 		try {
