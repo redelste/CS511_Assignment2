@@ -27,7 +27,7 @@ public class Exercise {
 			WeightPlateSize a = WeightPlateSize.RandomWeightPlateSize();
 			weightSet.replace(a, weightSet.get(a)+1);
 		}
-		int duration = 3000 + new Random().nextInt(5000);
+		int duration = 300 + new Random().nextInt(500);
 		return new Exercise(at, weightSet, duration);
 	};
 	
