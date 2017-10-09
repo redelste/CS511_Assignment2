@@ -1,5 +1,7 @@
 package Assignment2;
 
+//Zach Saegesser and Ryan Edelstein
+//I pledge my honor that I have abided by the Stevens honor System
 
 /** start the simulation */
 public class Assignment2 {

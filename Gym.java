@@ -1,5 +1,8 @@
 package Assignment2;
 
+//Zach Saegesser and Ryan Edelstein
+//I pledge my honor that I have abided by the Stevens honor System
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
